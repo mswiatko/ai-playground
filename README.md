@@ -8,9 +8,11 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 2. Create virtual environment:
 
+```
 $ python3 -m venv .venv
 $ source .venv/bin/activate
 $ pip install -r requirements.txt
+```
 
 3. Download and run Ollama model:
 
