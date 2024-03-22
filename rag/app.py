@@ -16,6 +16,7 @@ from langchain.callbacks.manager import CallbackManager
 from operator import itemgetter
 
 import config
+import time
 
 callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
 model = Ollama(model=config.AI_MODEL, callbacks=callback_manager)
@@ -66,6 +67,8 @@ while (True):
     if question.startswith("/"):
         break
 
+    start = time.time()
     answer = message_history.invoke({"question": question},
                                     {"configurable": {"session_id": "ai_fun"}})
-    print("\n")
+    exe_time = time.time() - start
+    print(f"\n\tExecution time: {exe_time:.6f} seconds")
