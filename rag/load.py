@@ -30,7 +30,7 @@ print(f"Splitting time: {exe_time:.6f} seconds")
 
 print("Creating embeddings...")
 start = time.time()
-embedding = OllamaEmbeddings(model=config.AI_MODEL)
+embedding = OllamaEmbeddings(model=config.AI_EMBEDDING_MODEL)
 vectordb = Chroma.from_documents(documents=texts, embedding=embedding, persist_directory=config.AI_DB_DIR)
 exe_time = time.time() - start
 print(f"Creating embeddings time: {exe_time:.6f} seconds")
