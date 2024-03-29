@@ -1,6 +1,9 @@
 from langchain_community.llms import Ollama
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import UnstructuredFileLoader
+
+from langchain_community.vectorstores import utils as chromautils
 from langchain_community.vectorstores import Chroma
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -12,8 +15,9 @@ import sys
 
 print("Loading document...")
 start = time.time()
-loader = PyPDFLoader(sys.argv[1])
+loader = UnstructuredFileLoader(sys.argv[1], mode="elements")
 document = loader.load()
+document = chromautils.filter_complex_metadata(document)
 exe_time = time.time() - start
 print(f"Loading time: {exe_time:.6f} seconds")
 

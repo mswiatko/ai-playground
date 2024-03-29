@@ -1,3 +1,6 @@
 langchain
 pypdf
 chromadb
+unstructured
+unstructured[pdf]
+poppler-utils
