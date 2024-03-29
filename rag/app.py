@@ -19,7 +19,7 @@ import config
 import time
 
 callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-model = Ollama(model=config.AI_MODEL, callbacks=callback_manager)
+model = Ollama(model=config.AI_LLM_MODEL, callbacks=callback_manager)
 
 prompt = ChatPromptTemplate.from_messages(
         [
@@ -33,7 +33,7 @@ prompt = ChatPromptTemplate.from_messages(
             ("human", "{question}"),
         ])
 
-embedding = OllamaEmbeddings(model=config.AI_MODEL)
+embedding = OllamaEmbeddings(model=config.AI_EMBEDDING_MODEL)
 parser = StrOutputParser()
 
 vectordb = Chroma(persist_directory=config.AI_DB_DIR, embedding_function=embedding)
